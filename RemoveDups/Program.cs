@@ -20,22 +20,22 @@ namespace RemoveDups
         }
         private static int[] RemoveDups(int[] nums)
         {
-            Dictionary<int, int> numbers = new Dictionary<int, int>();
-            Dictionary<int, int> found = new Dictionary<int, int>();
+            HashSet<int> goodNumbers = new HashSet<int>();
+            HashSet<int> found = new HashSet<int>();
             for (int i = 0; i < nums.Length; i++)
             {
                 int thisNum = nums[i];
-                if(found.ContainsKey(thisNum))
+                if(found.Contains(thisNum))
                 {
-                    numbers.Remove(thisNum);
+                    goodNumbers.Remove(thisNum);
                 }
                 else
                 {
-                    found.Add(thisNum, thisNum);
-                    numbers.Add(thisNum, thisNum);
+                    found.Add(thisNum);
+                    goodNumbers.Add(thisNum);
                 }
             }
-            return numbers.Values.ToArray();
+            return goodNumbers.ToArray();
         }
     }
 }
